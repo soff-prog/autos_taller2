@@ -41,7 +41,7 @@ public class matricula {
 
     // RELACION 1:1
     @OneToOne
-    @JoinColumn(name = "auto_id", nullable = false)
+    @JoinColumn(name = "auto_id", nullable = false, unique = true)
     @JsonBackReference("auto-matricula")
     private auto auto;
 

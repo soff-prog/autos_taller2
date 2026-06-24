@@ -8,6 +8,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "auto")
 public class auto {
@@ -52,8 +54,18 @@ public class auto {
 
     //RELACION 1:1
     @OneToOne(mappedBy = "auto")
-    @JsonManagedReference("auto-carnet")
+    @JsonManagedReference("auto-matricula")
     private matricula matricula;
+
+    // RELACIÓN n:n
+    @ManyToMany
+    @JoinTable(
+            name = "auto_accesorio",
+            joinColumns = @JoinColumn(name = "auto_id"),
+            inverseJoinColumns = @JoinColumn(name = "accesorio_id")
+    )
+    @JsonManagedReference("auto-accesorio")
+    private List<accesorios> accesorios;
 
 
     //RELACION n:1
@@ -66,7 +78,7 @@ public class auto {
     public auto() {
     }
 
-    public auto(Long id, String marca, String modelo, Integer anio, String color, Double precio, String numeroChasis, String estado, matricula matricula, cliente cliente) {
+    public auto(Long id, String marca, String modelo, Integer anio, String color, Double precio, String numeroChasis, String estado, matricula matricula, List<accesorios> accesorios, cliente cliente) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
@@ -76,6 +88,7 @@ public class auto {
         this.numeroChasis = numeroChasis;
         this.estado = estado;
         this.matricula = matricula;
+        this.accesorios = accesorios;
         this.cliente = cliente;
     }
 
@@ -149,6 +162,14 @@ public class auto {
 
     public void setMatricula(matricula matricula) {
         this.matricula = matricula;
+    }
+
+    public List<accesorios> getAccesorios() {
+        return accesorios;
+    }
+
+    public void setAccesorios(List<accesorios> accesorios) {
+        this.accesorios = accesorios;
     }
 
     public cliente getCliente() {

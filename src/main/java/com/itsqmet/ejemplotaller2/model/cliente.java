@@ -57,7 +57,7 @@ public class cliente {
     public cliente() {
     }
 
-    public cliente(Long id, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, List<auto> autos) {
+    public cliente(Long id, String cedula, String nombre, String apellido, String telefono, String correo, String direccion) {
         this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
@@ -65,7 +65,6 @@ public class cliente {
         this.telefono = telefono;
         this.correo = correo;
         this.direccion = direccion;
-        this.autos = autos;
     }
 
     public Long getId() {

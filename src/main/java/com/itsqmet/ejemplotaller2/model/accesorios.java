@@ -1,10 +1,13 @@
 package com.itsqmet.ejemplotaller2.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
+import java.util.List;
 
 @Entity
 @Table(name = "accesorios")
@@ -44,10 +47,16 @@ public class accesorios {
     @Column(nullable = false)
     private String garantia;
 
+
+    //RELACIÓN n:n
+    @ManyToMany(mappedBy = "accesorios")
+    @JsonBackReference("auto-accesorio")
+    private List<auto> autos;
+
     public accesorios() {
     }
 
-    public accesorios(Long id, String nombre, String descripcion, String marca, Double precio, Integer stock, String garantia) {
+    public accesorios(Long id, String nombre, String descripcion, String marca, Double precio, Integer stock, String garantia, List<auto> autos) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -55,6 +64,7 @@ public class accesorios {
         this.precio = precio;
         this.stock = stock;
         this.garantia = garantia;
+        this.autos = autos;
     }
 
     public Long getId() {
@@ -111,5 +121,13 @@ public class accesorios {
 
     public void setGarantia(String garantia) {
         this.garantia = garantia;
+    }
+
+    public List<auto> getAutos() {
+        return autos;
+    }
+
+    public void setAutos(List<auto> autos) {
+        this.autos = autos;
     }
 }
