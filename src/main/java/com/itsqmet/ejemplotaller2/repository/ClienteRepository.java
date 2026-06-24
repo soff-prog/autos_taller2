@@ -1,4 +1,7 @@
 package com.itsqmet.ejemplotaller2.repository;
 
-public interface ClienteRepository {
+import com.itsqmet.ejemplotaller2.model.cliente;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ClienteRepository extends JpaRepository<cliente, Long> {
 }
