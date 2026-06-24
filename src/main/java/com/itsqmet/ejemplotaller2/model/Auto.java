@@ -64,7 +64,6 @@ public class Auto {
             joinColumns = @JoinColumn(name = "auto_id"),
             inverseJoinColumns = @JoinColumn(name = "accesorio_id")
     )
-    @JsonManagedReference("auto-accesorio")
     private List<Accesorios> accesorios;
 
 
