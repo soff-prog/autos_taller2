@@ -1,6 +1,6 @@
 package com.itsqmet.ejemplotaller2.service;
 
-import com.itsqmet.ejemplotaller2.model.cliente;
+import com.itsqmet.ejemplotaller2.model.Cliente;
 import com.itsqmet.ejemplotaller2.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public List<cliente> obtenerTodo() {
+    public List<Cliente> obtenerTodo() {
         return clienteRepository.findAll();
     }
 
-    public Optional<cliente> buscarPorId(Long id) {
+    public Optional<Cliente> buscarPorId(Long id) {
         return clienteRepository.findById(id);
     }
 
-    public cliente crearCliente(cliente cliente) {
+    public Cliente crearCliente(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 
@@ -34,7 +34,7 @@ public class ClienteService {
         return false;
     }
 
-    public Optional<cliente> actualizar(Long id, cliente clienteActualizado) {
+    public Optional<Cliente> actualizar(Long id, Cliente clienteActualizado) {
 
         return clienteRepository.findById(id).map(c -> {
 

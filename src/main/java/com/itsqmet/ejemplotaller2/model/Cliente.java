@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "cliente")
-public class cliente {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,13 +51,13 @@ public class cliente {
     //RELACION n:1
     @OneToMany(mappedBy = "cliente")
     @JsonManagedReference("cliente-auto")
-    private List<auto> autos;
+    private List<Auto> autos;
 
 
-    public cliente() {
+    public Cliente() {
     }
 
-    public cliente(Long id, String cedula, String nombre, String apellido, String telefono, String correo, String direccion) {
+    public Cliente(Long id, String cedula, String nombre, String apellido, String telefono, String correo, String direccion) {
         this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
@@ -123,11 +123,11 @@ public class cliente {
         this.direccion = direccion;
     }
 
-    public List<auto> getAutos() {
+    public List<Auto> getAutos() {
         return autos;
     }
 
-    public void setAutos(List<auto> autos) {
+    public void setAutos(List<Auto> autos) {
         this.autos = autos;
     }
 }

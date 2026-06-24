@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "auto")
-public class auto {
+public class Auto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,7 +55,7 @@ public class auto {
     //RELACION 1:1
     @OneToOne(mappedBy = "auto")
     @JsonManagedReference("auto-matricula")
-    private matricula matricula;
+    private Matricula matricula;
 
     // RELACIÓN n:n
     @ManyToMany
@@ -65,20 +65,20 @@ public class auto {
             inverseJoinColumns = @JoinColumn(name = "accesorio_id")
     )
     @JsonManagedReference("auto-accesorio")
-    private List<accesorios> accesorios;
+    private List<Accesorios> accesorios;
 
 
     //RELACION n:1
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     @JsonBackReference("cliente-auto")
-    private cliente cliente;
+    private Cliente cliente;
 
 
-    public auto() {
+    public Auto() {
     }
 
-    public auto(Long id, String marca, String modelo, Integer anio, String color, Double precio, String numeroChasis, String estado, matricula matricula, List<accesorios> accesorios, cliente cliente) {
+    public Auto(Long id, String marca, String modelo, Integer anio, String color, Double precio, String numeroChasis, String estado, Matricula matricula, List<Accesorios> accesorios, Cliente cliente) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
@@ -156,27 +156,27 @@ public class auto {
         this.estado = estado;
     }
 
-    public matricula getMatricula() {
+    public Matricula getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(matricula matricula) {
+    public void setMatricula(Matricula matricula) {
         this.matricula = matricula;
     }
 
-    public List<accesorios> getAccesorios() {
+    public List<Accesorios> getAccesorios() {
         return accesorios;
     }
 
-    public void setAccesorios(List<accesorios> accesorios) {
+    public void setAccesorios(List<Accesorios> accesorios) {
         this.accesorios = accesorios;
     }
 
-    public cliente getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(cliente cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 }

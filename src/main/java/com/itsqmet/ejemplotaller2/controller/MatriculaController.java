@@ -1,6 +1,6 @@
 package com.itsqmet.ejemplotaller2.controller;
 
-import com.itsqmet.ejemplotaller2.model.matricula;
+import com.itsqmet.ejemplotaller2.model.Matricula;
 import com.itsqmet.ejemplotaller2.service.MatriculaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class MatriculaController {
     private MatriculaService matriculaService;
 
     @GetMapping
-    public ResponseEntity<List<matricula>> obtenerTodos() {
+    public ResponseEntity<List<Matricula>> obtenerTodos() {
         return ResponseEntity.ok(matriculaService.obtenerTodo());
     }
 
@@ -37,7 +37,7 @@ public class MatriculaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@Valid @RequestBody matricula matricula,
+    public ResponseEntity<?> crear(@Valid @RequestBody Matricula matricula,
                                    BindingResult result) {
 
         if (result.hasErrors()) {
@@ -50,7 +50,7 @@ public class MatriculaController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
         }
 
-        matricula nueva = matriculaService.crearMatricula(matricula);
+        Matricula nueva = matriculaService.crearMatricula(matricula);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(nueva);
     }
@@ -72,7 +72,7 @@ public class MatriculaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id,
-                                        @Valid @RequestBody matricula matricula,
+                                        @Valid @RequestBody Matricula matricula,
                                         BindingResult result) {
 
         if (result.hasErrors()) {

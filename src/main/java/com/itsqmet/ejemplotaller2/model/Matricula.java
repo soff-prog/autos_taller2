@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "matriculas")
-public class matricula {
+public class Matricula {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,13 +43,13 @@ public class matricula {
     @OneToOne
     @JoinColumn(name = "auto_id", nullable = false, unique = true)
     @JsonBackReference("auto-matricula")
-    private auto auto;
+    private Auto auto;
 
 
-    public matricula() {
+    public Matricula() {
     }
 
-    public matricula(Long id, String numeroMatricula, LocalDate fechaEmision, LocalDate fechaCaducidad, String provincia, String estado, auto auto) {
+    public Matricula(Long id, String numeroMatricula, LocalDate fechaEmision, LocalDate fechaCaducidad, String provincia, String estado, Auto auto) {
         this.id = id;
         this.numeroMatricula = numeroMatricula;
         this.fechaEmision = fechaEmision;
@@ -107,11 +107,11 @@ public class matricula {
         this.estado = estado;
     }
 
-    public auto getAuto() {
+    public Auto getAuto() {
         return auto;
     }
 
-    public void setAuto(auto auto) {
+    public void setAuto(Auto auto) {
         this.auto = auto;
     }
 }

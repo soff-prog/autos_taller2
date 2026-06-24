@@ -1,7 +1,10 @@
 package com.itsqmet.ejemplotaller2.service;
 
-import com.itsqmet.ejemplotaller2.model.auto;
+import com.itsqmet.ejemplotaller2.model.Auto;
+import com.itsqmet.ejemplotaller2.model.Cliente;
 import com.itsqmet.ejemplotaller2.repository.AutoRepository;
+import com.itsqmet.ejemplotaller2.repository.ClienteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,27 +17,50 @@ public class AutoService {
     @Autowired
     private AutoRepository autoRepository;
 
-    public List<auto> obtenerTodo() {
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+
+    public List<Auto> obtenerTodo() {
         return autoRepository.findAll();
     }
 
-    public Optional<auto> buscarPorId(Long id) {
+
+    public Optional<Auto> buscarPorId(Long id) {
         return autoRepository.findById(id);
     }
 
-    public auto crearAuto(auto auto) {
+
+    public Auto crearAuto(Auto auto) {
+
+        if(auto.getCliente() != null){
+
+            Long idCliente = auto.getCliente().getId();
+
+            Cliente cliente = clienteRepository.findById(idCliente)
+                    .orElseThrow(() ->
+                            new RuntimeException("Cliente no existe"));
+
+            auto.setCliente(cliente);
+        }
+
         return autoRepository.save(auto);
     }
 
-    public boolean eliminar(Long id) {
-        if (autoRepository.existsById(id)) {
+
+    public boolean eliminar(Long id){
+
+        if(autoRepository.existsById(id)){
             autoRepository.deleteById(id);
             return true;
         }
+
         return false;
     }
 
-    public Optional<auto> actualizar(Long id, auto autoActualizado) {
+
+    public Optional<Auto> actualizar(Long id, Auto autoActualizado){
+
         return autoRepository.findById(id).map(a -> {
 
             a.setMarca(autoActualizado.getMarca());

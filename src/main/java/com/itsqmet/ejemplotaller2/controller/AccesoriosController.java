@@ -1,6 +1,6 @@
 package com.itsqmet.ejemplotaller2.controller;
 
-import com.itsqmet.ejemplotaller2.model.accesorios;
+import com.itsqmet.ejemplotaller2.model.Accesorios;
 import com.itsqmet.ejemplotaller2.service.AccesoriosService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class AccesoriosController {
     private AccesoriosService accesoriosService;
 
     @GetMapping
-    public ResponseEntity<List<accesorios>> obtenerTodos() {
+    public ResponseEntity<List<Accesorios>> obtenerTodos() {
         return ResponseEntity.ok(accesoriosService.obtenerTodo());
     }
 
@@ -35,7 +35,7 @@ public class AccesoriosController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@Valid @RequestBody accesorios accesorio,
+    public ResponseEntity<?> crear(@Valid @RequestBody Accesorios accesorio,
                                    BindingResult result) {
 
         if (result.hasErrors()) {
@@ -49,7 +49,7 @@ public class AccesoriosController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
         }
 
-        accesorios nuevo = accesoriosService.crearAccesorio(accesorio);
+        Accesorios nuevo = accesoriosService.crearAccesorio(accesorio);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevo);
     }
@@ -69,7 +69,7 @@ public class AccesoriosController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id,
-                                        @Valid @RequestBody accesorios accesorio,
+                                        @Valid @RequestBody Accesorios accesorio,
                                         BindingResult result) {
 
         if (result.hasErrors()) {

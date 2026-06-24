@@ -1,6 +1,6 @@
 package com.itsqmet.ejemplotaller2.controller;
 
-import com.itsqmet.ejemplotaller2.model.auto;
+import com.itsqmet.ejemplotaller2.model.Auto;
 import com.itsqmet.ejemplotaller2.service.AutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class AutoController {
     private AutoService autoService;
 
     @GetMapping
-    public ResponseEntity<List<auto>> obtenerTodos() {
+    public ResponseEntity<List<Auto>> obtenerTodos() {
         return ResponseEntity.ok(autoService.obtenerTodo());
     }
 
@@ -36,7 +36,7 @@ public class AutoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@Valid @RequestBody auto auto,
+    public ResponseEntity<?> crear(@Valid @RequestBody Auto auto,
                                    BindingResult result) {
 
         if (result.hasErrors()) {
@@ -49,7 +49,7 @@ public class AutoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
         }
 
-        auto nuevo = autoService.crearAuto(auto);
+        Auto nuevo = autoService.crearAuto(auto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevo);
     }
@@ -68,7 +68,7 @@ public class AutoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id,
-                                        @Valid @RequestBody auto auto,
+                                        @Valid @RequestBody Auto auto,
                                         BindingResult result) {
 
         if (result.hasErrors()) {

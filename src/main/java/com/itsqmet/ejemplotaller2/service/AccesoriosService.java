@@ -1,6 +1,6 @@
 package com.itsqmet.ejemplotaller2.service;
 
-import com.itsqmet.ejemplotaller2.model.accesorios;
+import com.itsqmet.ejemplotaller2.model.Accesorios;
 import com.itsqmet.ejemplotaller2.repository.AccesoriosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ public class AccesoriosService {
     @Autowired
     private AccesoriosRepository accesoriosRepository;
 
-    public List<accesorios> obtenerTodo() {
+    public List<Accesorios> obtenerTodo() {
         return accesoriosRepository.findAll();
     }
 
-    public Optional<accesorios> buscarPorId(Long id) {
+    public Optional<Accesorios> buscarPorId(Long id) {
         return accesoriosRepository.findById(id);
     }
 
-    public accesorios crearAccesorio(accesorios accesorio) {
+    public Accesorios crearAccesorio(Accesorios accesorio) {
         return accesoriosRepository.save(accesorio);
     }
 
@@ -34,7 +34,7 @@ public class AccesoriosService {
         return false;
     }
 
-    public Optional<accesorios> actualizar(Long id, accesorios accesorioActualizado) {
+    public Optional<Accesorios> actualizar(Long id, Accesorios accesorioActualizado) {
         return accesoriosRepository.findById(id).map(accesorio -> {
             accesorio.setNombre(accesorioActualizado.getNombre());
             accesorio.setDescripcion(accesorioActualizado.getDescripcion());

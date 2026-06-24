@@ -1,6 +1,6 @@
 package com.itsqmet.ejemplotaller2.service;
 
-import com.itsqmet.ejemplotaller2.model.matricula;
+import com.itsqmet.ejemplotaller2.model.Matricula;
 import com.itsqmet.ejemplotaller2.repository.MatriculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ public class MatriculaService {
     @Autowired
     private MatriculaRepository matriculaRepository;
 
-    public List<matricula> obtenerTodo() {
+    public List<Matricula> obtenerTodo() {
         return matriculaRepository.findAll();
     }
 
-    public Optional<matricula> buscarPorId(Long id) {
+    public Optional<Matricula> buscarPorId(Long id) {
         return matriculaRepository.findById(id);
     }
 
-    public matricula crearMatricula(matricula matricula) {
+    public Matricula crearMatricula(Matricula matricula) {
         return matriculaRepository.save(matricula);
     }
 
@@ -36,7 +36,7 @@ public class MatriculaService {
         return false;
     }
 
-    public Optional<matricula> actualizar(Long id, matricula matriculaActualizada) {
+    public Optional<Matricula> actualizar(Long id, Matricula matriculaActualizada) {
 
         return matriculaRepository.findById(id).map(m -> {
 

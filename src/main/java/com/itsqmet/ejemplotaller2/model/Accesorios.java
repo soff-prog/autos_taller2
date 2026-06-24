@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "accesorios")
-public class accesorios {
+public class Accesorios {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,12 +51,12 @@ public class accesorios {
     //RELACIÓN n:n
     @ManyToMany(mappedBy = "accesorios")
     @JsonBackReference("auto-accesorio")
-    private List<auto> autos;
+    private List<Auto> autos;
 
-    public accesorios() {
+    public Accesorios() {
     }
 
-    public accesorios(Long id, String nombre, String descripcion, String marca, Double precio, Integer stock, String garantia, List<auto> autos) {
+    public Accesorios(Long id, String nombre, String descripcion, String marca, Double precio, Integer stock, String garantia, List<Auto> autos) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -123,11 +123,11 @@ public class accesorios {
         this.garantia = garantia;
     }
 
-    public List<auto> getAutos() {
+    public List<Auto> getAutos() {
         return autos;
     }
 
-    public void setAutos(List<auto> autos) {
+    public void setAutos(List<Auto> autos) {
         this.autos = autos;
     }
 }

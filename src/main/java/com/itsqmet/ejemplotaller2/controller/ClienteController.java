@@ -1,6 +1,6 @@
 package com.itsqmet.ejemplotaller2.controller;
 
-import com.itsqmet.ejemplotaller2.model.cliente;
+import com.itsqmet.ejemplotaller2.model.Cliente;
 import com.itsqmet.ejemplotaller2.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping
-    public ResponseEntity<List<cliente>> obtenerTodos() {
+    public ResponseEntity<List<Cliente>> obtenerTodos() {
         return ResponseEntity.ok(clienteService.obtenerTodo());
     }
 
@@ -36,7 +36,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@Valid @RequestBody cliente cliente,
+    public ResponseEntity<?> crear(@Valid @RequestBody Cliente cliente,
                                    BindingResult result) {
 
         if (result.hasErrors()) {
@@ -49,7 +49,7 @@ public class ClienteController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errores);
         }
 
-        cliente nuevo = clienteService.crearCliente(cliente);
+        Cliente nuevo = clienteService.crearCliente(cliente);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevo);
     }
@@ -69,7 +69,7 @@ public class ClienteController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id,
-                                        @Valid @RequestBody cliente cliente,
+                                        @Valid @RequestBody Cliente cliente,
                                         BindingResult result) {
 
         if (result.hasErrors()) {
